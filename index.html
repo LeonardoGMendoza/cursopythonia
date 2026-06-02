@@ -166,6 +166,66 @@
                 <p class="text-sm text-gray-400">Troque os valores das variáveis <code>numero1</code> e <code>numero2</code> no código e veja o resultado mudar sozinho.</p>
             </div>
         </section>
+        <!-- ETAPA 2 -->
+        <section class="mb-12 print-break">
+            <h2 class="text-2xl font-bold mb-6 text-teal-300 flex items-center gap-3">
+                <span class="bg-teal-500/20 p-2 rounded-lg">2️⃣</span> Etapa 2: Condicionais (if / elif / else)
+            </h2>
+            <div class="mb-6 text-gray-300">
+                <p class="mb-2"><strong>O que é um condicional?</strong></p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li>É uma "decisão" que o programa toma!</li>
+                    <li><code>if</code> (SE) → faça aquilo</li>
+                    <li><code>elif</code> (SENÃO SE) → faça outra coisa</li>
+                    <li><code>else</code> (SENÃO) → faça o padrão</li>
+                </ul>
+                <p class="mt-4 text-teal-400 font-medium">🎯 Sempre usamos esses 3 passos (Variáveis -> Condicionais -> Loops) para chegar no nosso grande objetivo final: O PROJETO!</p>
+            </div>
+            
+            <div class="code-block font-mono text-sm leading-relaxed">
+<pre><code><span class="python-func">print</span>(<span class="python-string">"=== MINHA CALCULADORA ==="</span>)
+
+<span class="python-comment"># 📥 Pedindo dados para o usuário</span>
+<span class="python-var">numero1</span> = <span class="python-func">float</span>(<span class="python-func">input</span>(<span class="python-string">"Digite o primeiro número: "</span>))
+<span class="python-var">numero2</span> = <span class="python-func">float</span>(<span class="python-func">input</span>(<span class="python-string">"Digite o segundo número: "</span>))
+<span class="python-var">operacao</span> = <span class="python-func">input</span>(<span class="python-string">"Qual operação? Digite +, -, * ou /: "</span>)
+
+<span class="python-comment"># 🤔 CONDICIONAL: tomando a decisão certa</span>
+<span class="python-keyword">if</span> <span class="python-var">operacao</span> == <span class="python-string">"+"</span>:
+    <span class="python-var">resultado</span> = <span class="python-var">numero1</span> + <span class="python-var">numero2</span>
+    <span class="python-func">print</span>(<span class="python-string">"Operação: SOMA"</span>)
+
+<span class="python-keyword">elif</span> <span class="python-var">operacao</span> == <span class="python-string">"-"</span>:
+    <span class="python-var">resultado</span> = <span class="python-var">numero1</span> - <span class="python-var">numero2</span>
+    <span class="python-func">print</span>(<span class="python-string">"Operação: SUBTRAÇÃO"</span>)
+
+<span class="python-keyword">elif</span> <span class="python-var">operacao</span> == <span class="python-string">"*"</span>:
+    <span class="python-var">resultado</span> = <span class="python-var">numero1</span> * <span class="python-var">numero2</span>
+    <span class="python-func">print</span>(<span class="python-string">"Operação: MULTIPLICAÇÃO"</span>)
+
+<span class="python-keyword">elif</span> <span class="python-var">operacao</span> == <span class="python-string">"/"</span>:
+    <span class="python-comment"># ⚠️ Cuidado: não podemos dividir por zero!</span>
+    <span class="python-keyword">if</span> <span class="python-var">numero2</span> == <span class="python-string">0</span>:
+        <span class="python-func">print</span>(<span class="python-string">"❌ Erro: não é possível dividir por zero!"</span>)
+        <span class="python-var">resultado</span> = <span class="python-keyword">None</span>
+    <span class="python-keyword">else</span>:
+        <span class="python-var">resultado</span> = <span class="python-var">numero1</span> / <span class="python-var">numero2</span>
+        <span class="python-func">print</span>(<span class="python-string">"Operação: DIVISÃO"</span>)
+
+<span class="python-keyword">else</span>:
+    <span class="python-func">print</span>(<span class="python-string">"❌ Operação inválida! Use +, -, * ou /"</span>)
+    <span class="python-var">resultado</span> = <span class="python-keyword">None</span>
+
+<span class="python-comment"># 📺 Mostrando o resultado</span>
+<span class="python-keyword">if</span> <span class="python-var">resultado</span> <span class="python-keyword">is not None</span>:
+    <span class="python-func">print</span>(<span class="python-string">f"Resultado: {numero1} {operacao} {numero2} = {resultado}"</span>)</code></pre>
+            </div>
+            
+            <div class="mt-4 p-4 rounded-lg bg-teal-500/10 border border-teal-500/20">
+                <p class="text-teal-300 font-medium">🧪 DESAFIO!</p>
+                <p class="text-sm text-gray-400">Adicione uma operação nova: o RESTO da divisão (%).<br>Dica: <code>resultado = numero1 % numero2</code></p>
+            </div>
+        </section>
 
         <!-- ETAPA 3 -->
         <section class="mb-12 print-break">
