@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material de Aula - Python + IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            400: '#60A5FA',
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            background-image: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%), radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15), transparent 25%);
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .code-block {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+        }
+        .python-keyword { color: #c678dd; }
+        .python-string { color: #98c379; }
+        .python-comment { color: #5c6370; font-style: italic; }
+        .python-func { color: #61afef; }
+        .python-var { color: #e06c75; }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .glass-panel {
+                background: white;
+                border: none;
+                box-shadow: none;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .code-block {
+                background: #f1f5f9;
+                border: 1px solid #cbd5e1;
+                color: #0f172a;
+                page-break-inside: avoid;
+            }
+            h1, h2, h3 {
+                color: #0f172a;
+                page-break-after: avoid;
+            }
+            .print-break {
+                page-break-before: always;
+            }
+            .python-keyword { color: #a626a4; }
+            .python-string { color: #50a14f; }
+            .python-comment { color: #a0a1a7; }
+            .python-func { color: #4078f2; }
+            .python-var { color: #e45649; }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-4 md:p-8">
+
+    <!-- Header Actions (No print) -->
+    <div class="max-w-4xl mx-auto flex justify-end mb-6 no-print">
+        <button onclick="window.print()" class="group relative px-6 py-3 font-semibold text-white rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-lg hover:shadow-blue-500/30 transition-all duration-300 flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Baixar Material em PDF
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto glass-panel rounded-2xl p-8 md:p-12">
+        
+        <!-- Header -->
+        <header class="text-center mb-12 border-b border-gray-700/50 pb-10">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-medium text-sm mb-4 tracking-wide">
+                AULA DE INTRODUÇÃO
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-4">
+                Python + IA 🐍
+            </h1>
+            <p class="text-xl text-gray-400 font-light">
+                Turma Ciência de Dados • Criando Projetos Reais desde o Primeiro Dia
+            </p>
+        </header>
+
+        <!-- Methodology -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-indigo-300 flex items-center gap-3">
+                <span class="bg-indigo-500/20 p-2 rounded-lg">🎯</span> A Nossa Metodologia
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl bg-red-900/10 border border-red-500/20 text-gray-300">
+                    <h3 class="text-lg font-bold text-red-400 mb-2">❌ Forma Clássica (O jeito chato)</h3>
+                    <p class="text-sm">Passar 2 meses estudando fundamentos isolados (variáveis, laços, condicionais) sem ver resultado. <strong>Resultado: Os alunos desistem.</strong></p>
+                </div>
+                <div class="p-6 rounded-xl bg-green-900/10 border border-green-500/20 text-gray-300">
+                    <h3 class="text-lg font-bold text-green-400 mb-2">✅ Nosso Método (Projetos Reais)</h3>
+                    <p class="text-sm">Aprender os fundamentos <strong>construindo projetos funcionais</strong> desde a primeira aula! Você já sai programando e vendo as coisas acontecerem.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ETAPA 1 -->
+        <section class="mb-12 print-break">
+            <h2 class="text-2xl font-bold mb-6 text-blue-300 flex items-center gap-3">
+                <span class="bg-blue-500/20 p-2 rounded-lg">1️⃣</span> Etapa 1: Variáveis
+            </h2>
+            <div class="mb-6 text-gray-300">
+                <p class="mb-2"><strong>O que é uma variável?</strong></p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li>É uma "caixinha" onde guardamos informações!</li>
+                    <li>Toda variável tem: <code>NOME = VALOR</code></li>
+                </ul>
+            </div>
+            
+            <div class="code-block font-mono">
+<pre><code><span class="python-comment"># 📦 Criando variáveis para guardar os números</span>
+<span class="python-var">numero1</span> = <span class="python-string">10</span>
+<span class="python-var">numero2</span> = <span class="python-string">5</span>
+
+<span class="python-comment"># 📦 Guardando o resultado em outra variável</span>
+<span class="python-var">resultado</span> = <span class="python-var">numero1</span> + <span class="python-var">numero2</span>
+
+<span class="python-comment"># 📺 Mostrando na tela com print()</span>
+<span class="python-func">print</span>(<span class="python-string">"=== MINHA CALCULADORA ==="</span>)
+<span class="python-func">print</span>(<span class="python-string">"Número 1:"</span>, <span class="python-var">numero1</span>)
+<span class="python-func">print</span>(<span class="python-string">"Número 2:"</span>, <span class="python-var">numero2</span>)
+<span class="python-func">print</span>(<span class="python-string">"Resultado da soma:"</span>, <span class="python-var">resultado</span>)</code></pre>
+            </div>
+            <div class="mt-4 p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
+                <p class="text-yellow-300 font-medium">💡 EXPERIMENTE!</p>
+                <p class="text-sm text-gray-400">Troque os valores das variáveis <code>numero1</code> e <code>numero2</code> no código e veja o resultado mudar sozinho.</p>
+            </div>
+        </section>
+
+        <!-- ETAPA 3 -->
+        <section class="mb-12 print-break">
+            <h2 class="text-2xl font-bold mb-6 text-purple-300 flex items-center gap-3">
+                <span class="bg-purple-500/20 p-2 rounded-lg">🚀</span> Etapa 3: Loops (Projeto Final)
+            </h2>
+            <div class="mb-6 text-gray-300">
+                <p class="mb-2"><strong>O que é um loop?</strong></p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li>É uma "repetição"! O programa fica rodando até que uma condição faça ele parar.</li>
+                    <li><code>while</code> (ENQUANTO) → repete enquanto algo for Verdadeiro (True).</li>
+                </ul>
+            </div>
+
+            <div class="code-block font-mono text-sm leading-relaxed">
+<pre><code><span class="python-comment"># 🔁 LOOP: ficamos calculando até o usuário querer sair</span>
+<span class="python-var">continuar</span> = <span class="python-keyword">True</span>  <span class="python-comment"># variável que controla o loop</span>
+
+<span class="python-keyword">while</span> <span class="python-var">continuar</span>:
+
+    <span class="python-func">print</span>(<span class="python-string">"\nOperações disponíveis: +  -  *  /"</span>)
+    
+    <span class="python-comment"># 📥 Pedindo os dados</span>
+    <span class="python-var">entrada</span> = <span class="python-func">input</span>(<span class="python-string">"\nDigite o 1º número (ou 'sair'): "</span>)
+
+    <span class="python-comment"># 🤔 CONDICIONAL dentro do LOOP para sair</span>
+    <span class="python-keyword">if</span> <span class="python-var">entrada</span>.<span class="python-func">lower</span>() == <span class="python-string">"sair"</span>:
+        <span class="python-var">continuar</span> = <span class="python-keyword">False</span>
+        <span class="python-func">print</span>(<span class="python-string">"\nAté logo! Encerrando..."</span>)
+
+    <span class="python-keyword">else</span>:
+        <span class="python-keyword">try</span>:
+            <span class="python-var">numero1</span> = <span class="python-func">float</span>(<span class="python-var">entrada</span>)
+            <span class="python-var">numero2</span> = <span class="python-func">float</span>(<span class="python-func">input</span>(<span class="python-string">"Digite o 2º número: "</span>))
+            <span class="python-var">operacao</span> = <span class="python-func">input</span>(<span class="python-string">"Qual operação? (+, -, *, /): "</span>)
+
+            <span class="python-comment"># 🤔 CONDICIONAL: escolhendo a operação certa</span>
+            <span class="python-keyword">if</span> <span class="python-var">operacao</span> == <span class="python-string">"+"</span>:
+                <span class="python-var">resultado</span> = <span class="python-var">numero1</span> + <span class="python-var">numero2</span>
+            <span class="python-keyword">elif</span> <span class="python-var">operacao</span> == <span class="python-string">"-"</span>:
+                <span class="python-var">resultado</span> = <span class="python-var">numero1</span> - <span class="python-var">numero2</span>
+            <span class="python-keyword">elif</span> <span class="python-var">operacao</span> == <span class="python-string">"*"</span>:
+                <span class="python-var">resultado</span> = <span class="python-var">numero1</span> * <span class="python-var">numero2</span>
+            <span class="python-keyword">elif</span> <span class="python-var">operacao</span> == <span class="python-string">"/"</span>:
+                <span class="python-keyword">if</span> <span class="python-var">numero2</span> == <span class="python-string">0</span>:
+                    <span class="python-func">print</span>(<span class="python-string">"ERRO: Não é possível dividir por zero!"</span>)
+                    <span class="python-var">resultado</span> = <span class="python-keyword">None</span>
+                <span class="python-keyword">else</span>:
+                    <span class="python-var">resultado</span> = <span class="python-var">numero1</span> / <span class="python-var">numero2</span>
+            
+            <span class="python-keyword">if</span> <span class="python-var">resultado</span> <span class="python-keyword">is not None</span>:
+                <span class="python-func">print</span>(<span class="python-string">f"\n>>> Resultado: {numero1} {operacao} {numero2} = {resultado}"</span>)
+
+        <span class="python-keyword">except</span> <span class="python-func">ValueError</span>:
+            <span class="python-func">print</span>(<span class="python-string">"ATENÇÃO: Digite apenas números válidos!"</span>)
+</code></pre>
+            </div>
+        </section>
+
+        <!-- RESUMO -->
+        <section class="mb-12 print-break">
+            <h2 class="text-2xl font-bold mb-6 text-emerald-300 flex items-center gap-3">
+                <span class="bg-emerald-500/20 p-2 rounded-lg">🗺️</span> Resumo dos 3 Fundamentos
+            </h2>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-slate-800/50 border border-slate-700 p-5 rounded-xl">
+                    <div class="text-3xl mb-3">1️⃣</div>
+                    <h3 class="font-bold text-white mb-2">Variáveis</h3>
+                    <p class="text-sm text-gray-400">Guardam os dados do programa (ex: <code>numero1</code>, <code>numero2</code>, <code>resultado</code>).</p>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 p-5 rounded-xl">
+                    <div class="text-3xl mb-3">2️⃣</div>
+                    <h3 class="font-bold text-white mb-2">Condicionais</h3>
+                    <p class="text-sm text-gray-400">Decidem o caminho (if/elif/else). Usamos para verificar a operação ou se o usuário quer sair.</p>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 p-5 rounded-xl">
+                    <div class="text-3xl mb-3">3️⃣</div>
+                    <h3 class="font-bold text-white mb-2">Loops</h3>
+                    <p class="text-sm text-gray-400">Mantêm o programa vivo (while). A calculadora não fecha até você mandar!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESAFIOS -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-orange-300 flex items-center gap-3">
+                <span class="bg-orange-500/20 p-2 rounded-lg">🧪</span> Desafios Finais
+            </h2>
+            <div class="p-6 border border-orange-500/30 bg-orange-900/10 rounded-xl shadow-inner text-gray-300">
+                <ol class="list-decimal pl-5 space-y-3 font-medium">
+                    <li>Conte quantas contas o usuário fez <span class="text-orange-400/80 font-normal text-sm">(dica: use uma variável contadora!)</span></li>
+                    <li>Guarde todos os resultados em uma lista e mostre no final.</li>
+                    <li>Adicione cores no terminal com a biblioteca <code>colorama</code>.</li>
+                </ol>
+            </div>
+        </section>
+
+        <footer class="text-center pt-8 border-t border-gray-700/50 text-gray-500 text-sm">
+            Criado para a aula inaugural da Turma de Ciência de Dados • Python + IA
+        </footer>
+
+    </main>
+
+</body>
+</html>
