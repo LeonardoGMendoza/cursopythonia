@@ -225,6 +225,80 @@
             </div>
         </section>
 
+        <!-- PROJETO FINAL: CALCULADORA VISUAL -->
+        <section class="mb-12 print-break">
+            <h2 class="text-2xl font-bold mb-6 text-pink-300 flex items-center gap-3">
+                <span class="bg-pink-500/20 p-2 rounded-lg">🖥️</span> Projeto Final: Calculadora Visual
+            </h2>
+            <div class="mb-6 text-gray-300">
+                <p class="mb-2"><strong>Aqui vemos os 3 fundamentos no mundo real!</strong></p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li>Usamos <code>tkinter</code> para desenhar as telas e botões de verdade.</li>
+                    <li>Utilizamos tudo o que aprendemos: <strong>variáveis</strong> (para guardar a expressão), <strong>condicionais</strong> (para decidir o que cada botão faz) e <strong>loops</strong> (tanto no `for` para desenhar os botões quanto no `mainloop()` da janela).</li>
+                </ul>
+            </div>
+
+            <div class="code-block font-mono text-sm leading-relaxed">
+<pre><code><span class="python-keyword">import</span> <span class="python-func">tkinter</span> <span class="python-keyword">as</span> <span class="python-func">tk</span>
+
+<span class="python-comment"># --- 1️⃣ FUNÇÃO: O QUE ACONTECE QUANDO CLICA NO BOTÃO? ---</span>
+<span class="python-keyword">def</span> <span class="python-func">clique_botao</span>(<span class="python-var">valor</span>):
+    <span class="python-comment"># 🤔 CONDICIONAIS: O que o usuário clicou?</span>
+    <span class="python-keyword">if</span> <span class="python-var">valor</span> == <span class="python-string">"="</span>:
+        <span class="python-keyword">try</span>:
+            <span class="python-comment"># Pega a expressão da tela e resolve (eval)</span>
+            <span class="python-var">expressao</span> = <span class="python-var">tela</span>.<span class="python-func">get</span>()
+            <span class="python-var">resultado</span> = <span class="python-func">eval</span>(<span class="python-var">expressao</span>)
+            
+            <span class="python-var">tela</span>.<span class="python-func">delete</span>(<span class="python-string">0</span>, <span class="python-func">tk</span>.END)
+            <span class="python-var">tela</span>.<span class="python-func">insert</span>(<span class="python-func">tk</span>.END, <span class="python-func">str</span>(<span class="python-var">resultado</span>))
+        <span class="python-keyword">except</span>:
+            <span class="python-var">tela</span>.<span class="python-func">delete</span>(<span class="python-string">0</span>, <span class="python-func">tk</span>.END)
+            <span class="python-var">tela</span>.<span class="python-func">insert</span>(<span class="python-func">tk</span>.END, <span class="python-string">"Erro"</span>)
+            
+    <span class="python-keyword">elif</span> <span class="python-var">valor</span> == <span class="python-string">"C"</span>:
+        <span class="python-var">tela</span>.<span class="python-func">delete</span>(<span class="python-string">0</span>, <span class="python-func">tk</span>.END)
+        
+    <span class="python-keyword">else</span>:
+        <span class="python-var">tela</span>.<span class="python-func">insert</span>(<span class="python-func">tk</span>.END, <span class="python-var">valor</span>)
+
+<span class="python-comment"># --- 2️⃣ CRIANDO A JANELA (O Visual) ---</span>
+<span class="python-var">janela</span> = <span class="python-func">tk</span>.<span class="python-func">Tk</span>()
+<span class="python-var">janela</span>.<span class="python-func">title</span>(<span class="python-string">"Calculadora - Turma Ciência"</span>)
+<span class="python-var">janela</span>.<span class="python-func">geometry</span>(<span class="python-string">"320x450"</span>)
+<span class="python-var">janela</span>.<span class="python-func">configure</span>(bg=<span class="python-string">"#2b2b2b"</span>)
+
+<span class="python-comment"># --- 3️⃣ A TELA DA CALCULADORA ---</span>
+<span class="python-var">tela</span> = <span class="python-func">tk</span>.<span class="python-func">Entry</span>(<span class="python-var">janela</span>, font=(<span class="python-string">"Arial"</span>, <span class="python-string">30</span>), bg=<span class="python-string">"#d4d4d2"</span>, fg=<span class="python-string">"black"</span>, justify=<span class="python-string">"right"</span>)
+<span class="python-var">tela</span>.<span class="python-func">grid</span>(row=<span class="python-string">0</span>, column=<span class="python-string">0</span>, columnspan=<span class="python-string">4</span>, ipadx=<span class="python-string">8</span>, ipady=<span class="python-string">20</span>, pady=<span class="python-string">15</span>, padx=<span class="python-string">10</span>)
+
+<span class="python-comment"># --- 4️⃣ OS BOTÕES E O LOOP ---</span>
+<span class="python-var">botoes</span> = [
+    <span class="python-string">'7'</span>, <span class="python-string">'8'</span>, <span class="python-string">'9'</span>, <span class="python-string">'/'</span>,
+    <span class="python-string">'4'</span>, <span class="python-string">'5'</span>, <span class="python-string">'6'</span>, <span class="python-string">'*'</span>,
+    <span class="python-string">'1'</span>, <span class="python-string">'2'</span>, <span class="python-string">'3'</span>, <span class="python-string">'-'</span>,
+    <span class="python-string">'C'</span>, <span class="python-string">'0'</span>, <span class="python-string">'='</span>, <span class="python-string">'+'</span>
+]
+
+<span class="python-var">linha</span> = <span class="python-string">1</span>
+<span class="python-var">coluna</span> = <span class="python-string">0</span>
+
+<span class="python-comment"># 🔁 LOOP: Para cada botão na nossa lista, desenhe ele na tela!</span>
+<span class="python-keyword">for</span> <span class="python-var">botao</span> <span class="python-keyword">in</span> <span class="python-var">botoes</span>:
+    <span class="python-var">comando</span> = <span class="python-keyword">lambda</span> x=<span class="python-var">botao</span>: <span class="python-func">clique_botao</span>(x)
+    <span class="python-func">tk</span>.<span class="python-func">Button</span>(<span class="python-var">janela</span>, text=<span class="python-var">botao</span>, font=(<span class="python-string">"Arial"</span>, <span class="python-string">18</span>, <span class="python-string">"bold"</span>), width=<span class="python-string">4</span>, height=<span class="python-string">2</span>,
+              bg=<span class="python-string">"#505050"</span>, fg=<span class="python-string">"white"</span>, command=<span class="python-var">comando</span>).<span class="python-func">grid</span>(row=<span class="python-var">linha</span>, column=<span class="python-var">coluna</span>, padx=<span class="python-string">5</span>, pady=<span class="python-string">5</span>)
+    
+    <span class="python-var">coluna</span> += <span class="python-string">1</span>
+    <span class="python-keyword">if</span> <span class="python-var">coluna</span> > <span class="python-string">3</span>:
+        <span class="python-var">coluna</span> = <span class="python-string">0</span>
+        <span class="python-var">linha</span> += <span class="python-string">1</span>
+
+<span class="python-comment"># 🔁 O MAIOR LOOP DE TODOS: Faz a janela não fechar!</span>
+<span class="python-var">janela</span>.<span class="python-func">mainloop</span>()</code></pre>
+            </div>
+        </section>
+
         <!-- RESUMO -->
         <section class="mb-12 print-break">
             <h2 class="text-2xl font-bold mb-6 text-emerald-300 flex items-center gap-3">
